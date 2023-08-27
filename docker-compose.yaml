@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  dashboard_deployment:
+    build: dashboard-deployment
+    image: ${REGISTRY_PREFIX}grafana-dashboard-deployment:${VERSION:-latest}
+  user_deployment:
+    build: user-creation
+    image: ${REGISTRY_PREFIX}grafana-user-deployment:${VERSION:-latest}

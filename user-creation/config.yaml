@@ -1,0 +1,4 @@
+---
+base_url: "{{ $.Values.userDeployment.grafana.host }}"
+username: "{{ $.Values.userDeployment.grafana.username }}"
+password: "{{ $.Values.userDeployment.grafana.password }}"

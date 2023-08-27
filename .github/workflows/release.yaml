@@ -1,0 +1,20 @@
+name: Publish package to GitHub Packages
+on:
+  release:
+    types: [created]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to Harbor
+        uses: docker/login-action@v2
+        with:
+          registry: harbor.sheldan.dev
+          username: ${{ secrets.HARBOR_USERNAME }}
+          password: ${{ secrets.HARBOR_TOKEN }}
+      - name: Push container
+        run: docker-compose build && docker-compose push
+        env:
+          REGISTRY_PREFIX: harbor.sheldan.dev/grafana-tools/
+          VERSION: ${{ env.version }}
