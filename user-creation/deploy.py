@@ -42,7 +42,7 @@ for user_path in files:
         if user_exists.status_code == 404:
             print(f'User {login_name} does not exist yet - creating')
             creation_response = session.post(f'{base_url}/api/admin/users', json=user_config, headers=headers)
-            creation_response_json = json.loads(creation_response)
+            creation_response_json = json.loads(creation_response.text)
             user_id = creation_response_json['id']
         else:
             user_id = json.loads(user_exists.text)['id']
